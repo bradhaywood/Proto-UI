@@ -4,7 +4,7 @@ local PlayerList  = nil
 surface.CreateFont("SBFont", {
 	font = "Prototype",
 	extended = false,
-	size = 18,
+	size = 22,
 	weight = 400,
 	blursize = 0,
 	scanlines = 0,
@@ -19,11 +19,17 @@ surface.CreateFont("SBFont", {
 	outline = false,
 })
 
+local function teamColor(tag)
+	if (tag == "[ViP]") then return Color(218, 165, 32, 255) end
+	if (tag == "[Admin]") then return Color(135, 206, 235, 255) end
+end
+
 hook.Add("ScoreboardShow", "Show Scoreboard", function()
 	if not IsValid(SBDerma) then
 		SBDerma = vgui.Create("DFrame")
-		SBDerma:SetSize(750, 500)
-		SBDerma:SetPos(ScrW() / 2 - 325, ScrH() / 2 - 250)
+		SBDerma:SetSize(ScrW()-450, 600)
+		--SBDerma:SetPos(ScrW() / 2, ScrH() / 2 - 250)
+		SBDerma:Center()
 		SBDerma:SetTitle("")
 		SBDerma:SetDraggable(false)
 		SBDerma:ShowCloseButton(false)
@@ -81,7 +87,14 @@ hook.Add("ScoreboardShow", "Show Scoreboard", function()
 					Color(54, 54, 54, 225)
 				)
 
-				draw.SimpleText(ply:Name(), "SBFont", 25, 4, Color(255,255,255,255))
+				local tag   = nil
+				local teamName = ply:Team()
+				if (teamName == 2) then tag = "[ViP]" end
+				if (teamName == 1) then tag = "[Admin]" end
+				local x, y = draw.SimpleText(ply:Name(), "SBFont", 25, 4, Color(255,255,255,255))
+				if (tag ~= nil) then
+					draw.SimpleText(tag, "SBFont", x + 32, 4, teamColor(tag))
+				end
 				draw.SimpleText("Ping: " .. ply:Ping(),
 					"SBFont",
 					PlayerList:GetWide() / 2,

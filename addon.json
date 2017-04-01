@@ -1,0 +1,10 @@
+{
+	"title"		:	"Proto UI",
+	"type"		:	"ServerContent",
+	"tags"		:	[ "roleplay", "fun" ],
+	"ignore"	:
+	[
+		".git",
+		"README.md"
+	]
+}

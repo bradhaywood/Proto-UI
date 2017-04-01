@@ -59,7 +59,7 @@ local function ProtoHud()
 		-- health hud
 		draw.RoundedBox(0, hudX, hudY, hudWidth, 20, Color(255,255,255,50))
 		if (health < 100) then
-			local width = hudWidth * math.Clamp( health / 100, 0, 1 );
+			local width = hudWidth * math.Clamp( health / 100, 0, 1 )
 			if (health < alertHealth) then
 				draw.RoundedBox(0, hudX, hudY, width, 20, Color(255, 0, 0, 200))
 			else
