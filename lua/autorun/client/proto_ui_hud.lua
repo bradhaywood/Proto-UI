@@ -34,6 +34,32 @@ surface.CreateFont("WeaponFont", {
 	outline = false
 })
 
+local texOutlinedCorner = surface.GetTextureID( "gui/td/rounded-corner" )
+function draw.RoundedBoxOutlined( bordersize, x, y, w, h, color, bordercol )
+
+	x = math.Round( x )
+	y = math.Round( y )
+	w = math.Round( w )
+	h = math.Round( h )
+
+	draw.RoundedBox( bordersize, x, y, w, h, color )
+	
+	surface.SetDrawColor( bordercol )
+	
+	surface.SetTexture( texOutlinedCorner )
+	surface.DrawTexturedRectRotated( x + bordersize/2 , y + bordersize/2, bordersize, bordersize, 0 ) 
+	surface.DrawTexturedRectRotated( x + w - bordersize/2 , y + bordersize/2, bordersize, bordersize, 270 ) 
+	surface.DrawTexturedRectRotated( x + w - bordersize/2 , y + h - bordersize/2, bordersize, bordersize, 180 ) 
+	surface.DrawTexturedRectRotated( x + bordersize/2 , y + h -bordersize/2, bordersize, bordersize, 90 ) 
+	
+	surface.DrawLine( x+bordersize, y, x+w-bordersize, y )
+	surface.DrawLine( x+bordersize, y+h-1, x+w-bordersize, y+h-1 )
+	
+	surface.DrawLine( x, y+bordersize, x, y+h-bordersize )
+	surface.DrawLine( x+w-1, y+bordersize, x+w-1, y+h-bordersize )
+
+end
+
 local function ProtoHud()
 	if (LocalPlayer():Alive()) then
 		local health = LocalPlayer():Health()
@@ -44,20 +70,24 @@ local function ProtoHud()
 		local weapon = LocalPlayer():GetActiveWeapon()
 		local clip1 = -1
 		local mag = -1
+		local printname = "Unknown"
 		if (IsValid(weapon)) then
 			clip1 = weapon:Clip1()
 			mag   = LocalPlayer():GetAmmoCount(weapon:GetPrimaryAmmoType())
+			printname = weapon:GetPrintName()
 		end
 		if (mag < 0) then mag = "-" end
 		if (clip1 < 0) then clip1 = "-" end
-		local weapStr = clip1 .. " / " .. LocalPlayer():GetAmmoCount(weapon:GetPrimaryAmmoType())
+		local weapStr = clip1 .. " / " .. mag
 		-- weapon hud
-		draw.RoundedBox(0, hudX, ScrH() - 145, hudWidth, 100, Color(54, 54, 54, 120))
+		draw.RoundedBox(0, hudX, ScrH() - 145, hudWidth, 100, Color(54, 54, 54, 125))
 		draw.DrawText(weapStr, "AmmoFont", hudX+40, ScrH() - 120, Color(255, 255, 255))
-		draw.DrawText(string.upper(weapon:GetPrintName()), "WeaponFont", hudX+40, ScrH() - 80, Color(255, 255, 255))
+		draw.DrawText(string.upper(printname), "WeaponFont", hudX+40, ScrH() - 80, Color(255, 255, 255))
 
 		-- health hud
-		draw.RoundedBox(0, hudX, hudY, hudWidth, 20, Color(255,255,255,50))
+		--draw.RoundedBox(0, hudX, hudY, hudWidth, 20, Color(255,255,255,50))
+		draw.RoundedBoxOutlined(0, hudX, hudY, hudWidth, 20, Color(255, 255, 255, 50), Color(255, 255, 255, 110))
+
 		if (health < 100) then
 			local width = hudWidth * math.Clamp( health / 100, 0, 1 )
 			if (health < alertHealth) then
@@ -106,7 +136,7 @@ hook.Add("HUDDrawTargetID", "Proto PlayerNameplate", function()
 			
 			local hudWidth = 100
 			local health = tr.Entity:Health()
-			draw.RoundedBox(0, x, y+20, hudWidth, 10, Color(255,255,255,50))
+			draw.RoundedBoxOutlined(0, x, y+20, hudWidth, 10, Color(255,255,255,50), Color(255, 255, 255, 110))
 			if (health < 100) then
 				local width = hudWidth * math.Clamp( health / 100, 0, 1 );
 				draw.RoundedBox(0, x, y+20, width, 10, Color(255,255,255,255))

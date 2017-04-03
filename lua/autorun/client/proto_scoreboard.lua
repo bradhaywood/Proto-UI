@@ -87,29 +87,31 @@ hook.Add("ScoreboardShow", "Show Scoreboard", function()
 					Color(54, 54, 54, 225)
 				)
 
-				local tag   = nil
-				local teamName = ply:Team()
-				if (teamName == 2) then tag = "[ViP]" end
-				if (teamName == 1) then tag = "[Admin]" end
-				local x, y = draw.SimpleText(ply:Name(), "SBFont", 25, 4, Color(255,255,255,255))
-				if (tag ~= nil) then
-					draw.SimpleText(tag, "SBFont", x + 32, 4, teamColor(tag))
-				end
-				draw.SimpleText("Ping: " .. ply:Ping(),
-					"SBFont",
-					PlayerList:GetWide() / 2,
-					4,
-					Color(255,255,255,255),
-					TEXT_ALIGN_RIGHT
-				)
+				if (IsValid(ply)) then
+					local tag   = nil
+					local teamName = ply:Team() or 0
+					if (teamName == 2) then tag = "[ViP]" end
+					if (teamName == 1) then tag = "[Admin]" end
+					local x, y = draw.SimpleText(ply:Name(), "SBFont", 25, 4, Color(255,255,255,255))
+					if (tag ~= nil) then
+						draw.SimpleText(tag, "SBFont", x + 32, 4, teamColor(tag))
+					end
+					draw.SimpleText("Ping: " .. ply:Ping(),
+						"SBFont",
+						PlayerList:GetWide() / 2,
+						4,
+						Color(255,255,255,255),
+						TEXT_ALIGN_RIGHT
+					)
 
-				draw.SimpleText("K: " .. ply:Frags() .. " / D: " .. ply:Deaths(),
-					"SBFont",
-					PlayerList:GetWide() - 40,
-					4,
-					Color(255,255,255,255),
-					TEXT_ALIGN_RIGHT
-				)
+					draw.SimpleText("K: " .. ply:Frags() .. " / D: " .. ply:Deaths(),
+						"SBFont",
+						PlayerList:GetWide() - 40,
+						4,
+						Color(255,255,255,255),
+						TEXT_ALIGN_RIGHT
+					)
+				end
 			end
 		end
 
