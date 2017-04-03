@@ -34,30 +34,28 @@ surface.CreateFont("WeaponFont", {
 	outline = false
 })
 
-local texOutlinedCorner = surface.GetTextureID( "gui/td/rounded-corner" )
-function draw.RoundedBoxOutlined( bordersize, x, y, w, h, color, bordercol )
+local texOutlinedCorner = surface.GetTextureID("gui/td/rounded-corner")
+function draw.RoundedBoxOutlined(bordersize, x, y, w, h, color, bordercol)
+	x = math.Round(x)
+	y = math.Round(y)
+	w = math.Round(w)
+	h = math.Round(h)
 
-	x = math.Round( x )
-	y = math.Round( y )
-	w = math.Round( w )
-	h = math.Round( h )
-
-	draw.RoundedBox( bordersize, x, y, w, h, color )
+	draw.RoundedBox(bordersize, x, y, w, h, color)
 	
-	surface.SetDrawColor( bordercol )
+	surface.SetDrawColor(bordercol)
 	
-	surface.SetTexture( texOutlinedCorner )
-	surface.DrawTexturedRectRotated( x + bordersize/2 , y + bordersize/2, bordersize, bordersize, 0 ) 
-	surface.DrawTexturedRectRotated( x + w - bordersize/2 , y + bordersize/2, bordersize, bordersize, 270 ) 
-	surface.DrawTexturedRectRotated( x + w - bordersize/2 , y + h - bordersize/2, bordersize, bordersize, 180 ) 
-	surface.DrawTexturedRectRotated( x + bordersize/2 , y + h -bordersize/2, bordersize, bordersize, 90 ) 
+	surface.SetTexture(texOutlinedCorner)
+	surface.DrawTexturedRectRotated(x + bordersize/2 , y + bordersize/2, bordersize, bordersize, 0) 
+	surface.DrawTexturedRectRotated(x + w - bordersize/2 , y + bordersize/2, bordersize, bordersize, 270) 
+	surface.DrawTexturedRectRotated(x + w - bordersize/2 , y + h - bordersize/2, bordersize, bordersize, 180) 
+	surface.DrawTexturedRectRotated(x + bordersize/2 , y + h -bordersize/2, bordersize, bordersize, 90) 
 	
-	surface.DrawLine( x+bordersize, y, x+w-bordersize, y )
-	surface.DrawLine( x+bordersize, y+h-1, x+w-bordersize, y+h-1 )
+	surface.DrawLine(x+bordersize, y, x+w-bordersize, y)
+	surface.DrawLine(x+bordersize, y+h-1, x+w-bordersize, y+h-1)
 	
-	surface.DrawLine( x, y+bordersize, x, y+h-bordersize )
-	surface.DrawLine( x+w-1, y+bordersize, x+w-1, y+h-bordersize )
-
+	surface.DrawLine(x, y+bordersize, x, y+h-bordersize)
+	surface.DrawLine(x+w-1, y+bordersize, x+w-1, y+h-bordersize)
 end
 
 local function ProtoHud()
@@ -85,7 +83,6 @@ local function ProtoHud()
 		draw.DrawText(string.upper(printname), "WeaponFont", hudX+40, ScrH() - 80, Color(255, 255, 255))
 
 		-- health hud
-		--draw.RoundedBox(0, hudX, hudY, hudWidth, 20, Color(255,255,255,50))
 		draw.RoundedBoxOutlined(0, hudX, hudY, hudWidth, 20, Color(255, 255, 255, 50), Color(255, 255, 255, 110))
 
 		if (health < 100) then
