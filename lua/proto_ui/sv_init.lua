@@ -1,4 +1,5 @@
 include "shared.lua"
+include "sv_manifest.lua"
 
 hook.Add("PlayerDeath", "Proto PlayerDeath", function(ply, inflictor, attacker)
 	-- if someone suicides, we don't want their frags returning negative numbers
@@ -8,11 +9,11 @@ hook.Add("PlayerDeath", "Proto PlayerDeath", function(ply, inflictor, attacker)
 end)
 
 hook.Add("Initialize", "Proto Initialize", function()
-	PLog("Initialized. Thanks for using Proto UI!")
+	PLog("Enjoy your slick interface")
 end)
 
 -- add font
-resource.AddFile("resource/fonts/Prototype.ttf")
+resource.AddFile("resource/fonts/prototype.ttf")
 resource.AddFile("sound/proto_ui/weaponselection/switch1.wav")
 resource.AddFile("sound/proto_ui/weaponselection/switch2.wav")
 resource.AddFile("sound/proto_ui/weaponselection/switch3.wav")

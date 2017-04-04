@@ -20,8 +20,8 @@ surface.CreateFont("SBFont", {
 })
 
 local function teamColor(tag)
-	if (tag == "[ViP]") then return Color(218, 165, 32, 255) end
-	if (tag == "[Admin]") then return Color(135, 206, 235, 255) end
+	if (tag == PROTO_TAG_VIP) then return Color(218, 165, 32, 255) end
+	if (tag == PROTO_TAG_ADMIN) then return Color(135, 206, 235, 255) end
 end
 
 hook.Add("ScoreboardShow", "Show Scoreboard", function()
@@ -90,8 +90,8 @@ hook.Add("ScoreboardShow", "Show Scoreboard", function()
 				if (IsValid(ply)) then
 					local tag   = nil
 					local teamName = ply:Team() or 0
-					if (teamName == 2) then tag = "[ViP]" end
-					if (teamName == 1) then tag = "[Admin]" end
+					if (teamName == PROTO_TEAM_VIP) then tag = PROTO_TAG_VIP end
+					if (teamName == PROTO_TEAM_ADMIN) then tag = PROTO_TAG_ADMIN end
 					local x, y = draw.SimpleText(ply:Name(), "SBFont", 25, 4, Color(255,255,255,255))
 					if (tag ~= nil) then
 						draw.SimpleText(tag, "SBFont", x + 32, 4, teamColor(tag))

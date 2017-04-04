@@ -95,6 +95,7 @@ hook.Add("PlayerBindPress", "Proto WeaponSwap", function(ply, bind, pressed)
   	net.WriteString(swep:GetClass())
   	net.SendToServer()
   	--surface.PlaySound("")
+  	ProtoWeap.SlotSelection = 1
   	ProtoWeap.ShowSelection = false
   	return true
   end

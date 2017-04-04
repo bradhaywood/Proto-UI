@@ -4,7 +4,9 @@
 	"tags"		:	[ "roleplay", "fun" ],
 	"ignore"	:
 	[
-		".git",
-		"README.md"
+		".git*",
+		"screenshots*",
+		"README.md",
+		"prototype.txt"
 	]
 }
