@@ -75,6 +75,9 @@ function ProtoWeap:CheckSlot(idx)
 		ProtoWeap.ShowSelection = true
 		ProtoWeap.Opened = CurTime()+3
 		ProtoWeap.LastSlotChecked = idx
+		local sndNum = ProtoWeap.SlotSelection
+		if (ProtoWeap.SlotSelection > 6) then sndNum = math.random(1, 6) end
+		surface.PlaySound("proto_ui/weaponselection/switch" .. sndNum .. ".wav")
 		return true
 	else
 		-- no weapons found in this slot
@@ -91,6 +94,7 @@ hook.Add("PlayerBindPress", "Proto WeaponSwap", function(ply, bind, pressed)
   	net.Start("ProtoSelectWeapon")
   	net.WriteString(swep:GetClass())
   	net.SendToServer()
+  	--surface.PlaySound("")
   	ProtoWeap.ShowSelection = false
   	return true
   end

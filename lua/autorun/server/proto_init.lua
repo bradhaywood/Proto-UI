@@ -13,6 +13,12 @@ end)
 
 -- add font
 resource.AddFile("resource/fonts/Prototype.ttf")
+resource.AddFile("sound/proto_ui/weaponselection/switch1.wav")
+resource.AddFile("sound/proto_ui/weaponselection/switch2.wav")
+resource.AddFile("sound/proto_ui/weaponselection/switch3.wav")
+resource.AddFile("sound/proto_ui/weaponselection/switch4.wav")
+resource.AddFile("sound/proto_ui/weaponselection/switch5.wav")
+resource.AddFile("sound/proto_ui/weaponselection/switch6.wav")
 
 util.AddNetworkString("ProtoSelectWeapon")
 net.Receive("ProtoSelectWeapon", function(len, ply)
