@@ -61,9 +61,9 @@ end
 local function ProtoHud()
 	if (LocalPlayer():Alive()) then
 		local health = LocalPlayer():Health()
-		local hudX = ScrW() / 2
-		local hudY = ScrH() - 15 - 20
 		local hudWidth = 300
+		local hudX = (ScrW() / 2) - (hudWidth / 2)
+		local hudY = ScrH() - 15 - 20
 		local alertHealth = 35
 		local weapon = LocalPlayer():GetActiveWeapon()
 		local clip1 = -1
@@ -154,7 +154,8 @@ local hide = {
 	CHudHealth = true,
 	CHudBattery = true,
 	CHudAmmo = true,
-	CHudSecondaryAmmo = true
+	CHudSecondaryAmmo = true,
+	CHudWeaponSelection = true
 }
 
 hook.Add("HUDShouldDraw", "HideHUD", function(name)

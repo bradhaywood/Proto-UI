@@ -8,6 +8,7 @@ At the time of writing, Proto UI will override your
 * Scoreboard
 * Nameplates
 * HUD (Health, armor, and ammo)
+* Weapon Selection HUD
 
 ## Screenshots
 
@@ -22,6 +23,9 @@ No armor
 
 Nameplates
 ![Nameplates](/screenshots/nameplates.jpg?raw=true "Nameplates")
+
+Weapon Selection
+![Weapon Selection](/screenshots/weaponselection.jpg?raw=true "Weapon Selection")
 
 Simple scoreboard
 ![Simple scoreboard](/screenshots/scoreboard.jpg?raw=true "Simple scoreboard")

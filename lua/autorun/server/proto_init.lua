@@ -13,3 +13,9 @@ end)
 
 -- add font
 resource.AddFile("resource/fonts/Prototype.ttf")
+
+util.AddNetworkString("ProtoSelectWeapon")
+net.Receive("ProtoSelectWeapon", function(len, ply)
+	local swep = net.ReadString()
+	ply:SelectWeapon(swep)
+end)
