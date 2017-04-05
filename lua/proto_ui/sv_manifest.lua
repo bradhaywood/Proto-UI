@@ -1,5 +1,8 @@
+include "sv_player_extension.lua"
+AddCSLuaFile "sv_player_extension.lua"
 AddCSLuaFile "cl_init.lua"
 AddCSLuaFile "cl_hud.lua"
 AddCSLuaFile "cl_scoreboard.lua"
 AddCSLuaFile "cl_weaponswap.lua"
+AddCSLuaFile "cl_pmessage.lua"
 AddCSLuaFile "shared.lua"

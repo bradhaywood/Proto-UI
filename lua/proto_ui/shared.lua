@@ -14,3 +14,7 @@ if (CLIENT) then
 	PROTO_TAG_VIP    = GetConVar("proto_ui_tag_vip"):GetString()
 	PROTO_TAG_ADMIN  = GetConVar("proto_ui_tag_admin"):GetString()
 end
+
+if (SERVER) then
+	util.AddNetworkString("PMessage")
+end

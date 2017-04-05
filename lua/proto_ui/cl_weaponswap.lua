@@ -1,5 +1,3 @@
-include "shared.lua"
-
 ProtoWeap = {}
 ProtoWeap.Cache = {}
 ProtoWeap.ShowSelection = false
@@ -89,7 +87,7 @@ hook.Add("PlayerBindPress", "Proto WeaponSwap", function(ply, bind, pressed)
 	if string.sub(bind, 1, 4) == "slot" and pressed then
     local idx = tonumber(string.sub(bind, 5, -1)) or 1
     ProtoWeap:CheckSlot(idx-1)
-  elseif (bind == "+attack" and ProtoWeap.ShowSelection) then
+  elseif (bind == "+attack" and ProtoWeap.ShowSelection and pressed) then
   	local swep = ProtoWeap.Cache[ProtoWeap.SelectedWeapon]
   	net.Start("ProtoSelectWeapon")
   	net.WriteString(swep:GetClass())
